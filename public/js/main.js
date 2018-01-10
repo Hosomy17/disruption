@@ -2,7 +2,6 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', {preload: preload, cre
 
 function preload()
 {
-	game.load.script('socket.io','/socket.io/socket.io.js');
 
 	game.load.script('link','/js/link.js');
 	game.load.script('user','/js/user.js');
@@ -23,7 +22,7 @@ function create()
 	game.state.add('PlayerPrefsState', PlayerPrefsState);
 	game.state.add('LoadState', LoadState);
 	game.state.add('GameState', GameState);
-	
+
 	game.state.start('MenuState');
 }
 
