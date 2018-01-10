@@ -1,7 +1,8 @@
-app = require('express')();
+var express = require('express');
+app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var express = require('express');
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended : true })); // support encoded bodies
@@ -12,11 +13,6 @@ server  = app.listen(app.get('port'), function() {
 });
 
 app.use(express.static(__dirname + '/public'));
-
-app.get('/', function(req, res)
-{
-	res.sendFile( __dirname + '/public/index.html');
-});
 
 var rooms =
 {
