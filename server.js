@@ -1,7 +1,7 @@
 var express = require('express');
 app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
@@ -11,6 +11,8 @@ app.set('port', (process.env.PORT || 8080));
 server  = app.listen(app.get('port'), function() {
   console.log('Server on port', app.get('port'));
 });
+
+var io = require('socket.io')(server);
 
 app.use(express.static(__dirname + '/public'));
 
