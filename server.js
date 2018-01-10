@@ -6,6 +6,11 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended : true })); // support encoded bodies
 
+app.set('port', (process.env.PORT || 8080));
+server  = app.listen(app.get('port'), function() {
+  console.log('Server on port', app.get('port'));
+});
+
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res)
@@ -13,7 +18,7 @@ app.get('/', function(req, res)
 	res.sendFile( __dirname + '/index.html');
 });
 
-var rooms = 
+var rooms =
 {
 	avaliable : []
 }
@@ -60,9 +65,4 @@ io.on('connection', function(socket)
 
 	});
 
-});
-
-http.listen(3000, function()
-{
-		console.log('listening on 3000');
 });
